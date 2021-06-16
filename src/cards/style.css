@@ -1,0 +1,37 @@
+p {
+    margin: 0;
+}
+
+.card {
+    background: #FEC000 ;
+    border-radius: 10px;
+}
+
+.card-icon {
+    text-align: center;
+}
+
+.card-name {
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: 1000;
+}
+.card-types {
+    display: flex;
+    justify-content: center;    
+}
+
+.card-type {
+    padding: 5px 10px;
+    margin: 10px 10px 10px 0;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.card-info {
+    text-align: center;
+}
+
+.title{
+    font-weight: 700;
+}
