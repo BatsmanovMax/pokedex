@@ -4,7 +4,7 @@
 }
 
 .grid-container {
-    width: 80%;
+    width: 60%;
     display: grid;
     margin: 0 auto;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -14,15 +14,29 @@
 .btn {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    margin: 40px 0;
 }
 
-.btn button {
+button {
     border-style: none;
     padding: 5px 10px;
     margin-right: 10px;
     border-radius: 5px;
     background: #717374;
-    color: rgba(236, 222, 14, 0.815);
+    color: white;
     font-size: 1em;
 }
+
+input {
+    display:block;
+    width:20%;
+    padding:10px;
+    margin-top: 10px;
+    margin-left: 80%;
+    display:block;
+    padding:10px;
+
+  }
+  input:hover {
+    box-shadow:0 0 4px rgba(0,0,0,0.5);
+  }
