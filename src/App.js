@@ -60,11 +60,14 @@ function App() {
   }
 
   const sortByType = (type) => {
-    const mp = pokemonData.map(item => {
-      return item.types.map(i => {
-        if (i.type.name === type) return item 
+    const mp = pokemonData.reduce((res, pokemon) => {
+      pokemon.types.forEach(element => {
+        if(element.type.name === type) {
+          res.push(pokemon)
+        }
       })
-    })
+      return res
+    }, [])
     console.log(mp)
     setPokemons(mp)
   }
