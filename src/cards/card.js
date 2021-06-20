@@ -6,7 +6,7 @@ function Card({ pokemon }) {
     return (
         <div className="card">
             <div className="card-icon">
-                <img src={pokemon.sprites.front_default} alt="" />
+                <img src={pokemon.sprites.front_default} style={{backgroundColor: typeColors[pokemon.types[0].type.name]}}alt="" />
             </div>
             <div className="card-name">
                 {pokemon.name}
