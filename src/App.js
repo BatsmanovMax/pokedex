@@ -1,4 +1,4 @@
-import React, {  useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './cards/card';
 import { getPokemon, getAllPokemon } from './functions/getPokemon';
 import './App.css';
@@ -10,7 +10,7 @@ function App() {
   const [prevUrl, setPrevUrl] = useState('');
   const [loading, setLoading] = useState(true);
   const [initialURL, setInitialUrl] = useState('https://pokeapi.co/api/v2/pokemon?limit=10')
- 
+
   const [pokemons, setPokemons] = useState([]);
   const def = (val) => {
     setInitialUrl(`https://pokeapi.co/api/v2/pokemon?limit=${val}`)
@@ -28,7 +28,6 @@ function App() {
     }
     fetchData();
   }, [initialURL])
-
 
   const next = async () => {
     setLoading(true);
@@ -59,17 +58,24 @@ function App() {
     setPokemonData(_pokemonData);
     setPokemons(_pokemonData);
   }
-  
+
   const sortByType = (type) => {
-    const mp = pokemonData.filter(item => item.types[0].type.name === type)
+    const mp = pokemonData.reduce((res, pokemon) => {
+      pokemon.types.forEach(element => {
+        if(element.type.name === type) {
+          res.push(pokemon)
+        }
+      })
+      return res
+    }, [])
     setPokemons(mp)
   }
 
 
   const searchedPokemons = (input) => {
     const mp = pokemonData.filter(pokemon => {
-    return pokemon.name.toLowerCase().includes(input.toLowerCase())
-  })
+      return pokemon.name.toLowerCase().includes(input.toLowerCase())
+    })
     setPokemons(mp)
   }
 
