@@ -1,4 +1,4 @@
-import React, {  useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './cards/card';
 import { getPokemon, getAllPokemon } from './functions/getPokemon';
 import './App.css';
@@ -10,10 +10,9 @@ function App() {
   const [prevUrl, setPrevUrl] = useState('');
   const [loading, setLoading] = useState(true);
   const [initialURL, setInitialUrl] = useState('https://pokeapi.co/api/v2/pokemon?limit=10')
- 
+
   const [pokemons, setPokemons] = useState([]);
   const def = (val) => {
-    console.log(val)
     setInitialUrl(`https://pokeapi.co/api/v2/pokemon?limit=${val}`)
   }
 
@@ -29,8 +28,6 @@ function App() {
     }
     fetchData();
   }, [initialURL])
-
-  console.log(typeColors)
 
   const next = async () => {
     setLoading(true);
@@ -61,17 +58,22 @@ function App() {
     setPokemonData(_pokemonData);
     setPokemons(_pokemonData);
   }
-  
+
   const sortByType = (type) => {
-    const mp = pokemonData.filter(item => item.types[0].type.name === type)
+    const mp = pokemonData.map(item => {
+      return item.types.map(i => {
+        if (i.type.name === type) return item 
+      })
+    })
+    console.log(mp)
     setPokemons(mp)
   }
 
 
   const searchedPokemons = (input) => {
     const mp = pokemonData.filter(pokemon => {
-    return pokemon.name.toLowerCase().includes(input.toLowerCase())
-  })
+      return pokemon.name.toLowerCase().includes(input.toLowerCase())
+    })
     setPokemons(mp)
   }
 
@@ -82,7 +84,7 @@ function App() {
         {loading ? <h1 style={{ textAlign: 'center' }}>Loading</h1> : (
           <>
             <input type="text" placeholder="search pokemon" className='input'
-            onChange={(event) => searchedPokemons(event.target.value)}
+              onChange={(event) => searchedPokemons(event.target.value)}
             />
             <div className="btn">
               <button onClick={prev}>Prev</button>
@@ -94,30 +96,30 @@ function App() {
               <button onClick={() => def(50)}>50 pokemons</button>
               <button onClick={() => setPokemons(pokemonData)}>Clear</button>
             </div>
-            <div className="btn"> 
-            <button style={{ backgroundColor: typeColors.water }} onClick={() => sortByType("water")}>Water</button>
-            <button style={{ backgroundColor: typeColors.bug }} onClick={() => sortByType("bug")}>Bug</button>
-            <button style={{ backgroundColor: typeColors.fairy }} onClick={() => sortByType("fairy")}>Fairy</button>
-            <button style={{ backgroundColor: typeColors.fire }} onClick={() => sortByType("fire")}>Fire</button>
-            <button style={{ backgroundColor: typeColors.poison }} onClick={() => sortByType("poison")}>Poison</button>
-            <button style={{ backgroundColor: typeColors.dragon }} onClick={() => sortByType("dragon")}>Dragon</button>
-            <button style={{ backgroundColor: typeColors.flying }} onClick={() => sortByType("flying")}>Flying</button>
-            <button style={{ backgroundColor: typeColors.ghost }} onClick={() => sortByType("ghost")}>Ghost</button>
-            <button style={{ backgroundColor: typeColors.ground }} onClick={() => sortByType("ground")}>Ground</button>
-            <button style={{ backgroundColor: typeColors.normal }} onClick={() => sortByType("normal")}>Normal</button>
-            <button style={{ backgroundColor: typeColors.steel }} onClick={() => sortByType("steel")}>Steel</button>
-            <button style={{ backgroundColor: typeColors.dark }} onClick={() => sortByType("dark")}>Dark</button>
-            <button style={{ backgroundColor: typeColors.electric }}onClick={() => sortByType("electric")}>Electric</button>
-            <button style={{ backgroundColor: typeColors.fighting }} onClick={() => sortByType("fighting")}>Fighting</button>
-            <button style={{ backgroundColor: typeColors.grass }} onClick={() => sortByType("grass")}>Grass</button>
-            <button style={{ backgroundColor: typeColors.ice }} onClick={() => sortByType("ice")}>Ice</button>
-            <button style={{ backgroundColor: typeColors.rock }} onClick={() => sortByType("rock")}>Rock</button>
-            <button style={{ backgroundColor: typeColors.psychic }} onClick={() => sortByType("psychic")}>Physic</button>
+            <div className="btn">
+              <button style={{ backgroundColor: typeColors.water }} onClick={() => sortByType("water")}>Water</button>
+              <button style={{ backgroundColor: typeColors.bug }} onClick={() => sortByType("bug")}>Bug</button>
+              <button style={{ backgroundColor: typeColors.fairy }} onClick={() => sortByType("fairy")}>Fairy</button>
+              <button style={{ backgroundColor: typeColors.fire }} onClick={() => sortByType("fire")}>Fire</button>
+              <button style={{ backgroundColor: typeColors.poison }} onClick={() => sortByType("poison")}>Poison</button>
+              <button style={{ backgroundColor: typeColors.dragon }} onClick={() => sortByType("dragon")}>Dragon</button>
+              <button style={{ backgroundColor: typeColors.flying }} onClick={() => sortByType("flying")}>Flying</button>
+              <button style={{ backgroundColor: typeColors.ghost }} onClick={() => sortByType("ghost")}>Ghost</button>
+              <button style={{ backgroundColor: typeColors.ground }} onClick={() => sortByType("ground")}>Ground</button>
+              <button style={{ backgroundColor: typeColors.normal }} onClick={() => sortByType("normal")}>Normal</button>
+              <button style={{ backgroundColor: typeColors.steel }} onClick={() => sortByType("steel")}>Steel</button>
+              <button style={{ backgroundColor: typeColors.dark }} onClick={() => sortByType("dark")}>Dark</button>
+              <button style={{ backgroundColor: typeColors.electric }} onClick={() => sortByType("electric")}>Electric</button>
+              <button style={{ backgroundColor: typeColors.fighting }} onClick={() => sortByType("fighting")}>Fighting</button>
+              <button style={{ backgroundColor: typeColors.grass }} onClick={() => sortByType("grass")}>Grass</button>
+              <button style={{ backgroundColor: typeColors.ice }} onClick={() => sortByType("ice")}>Ice</button>
+              <button style={{ backgroundColor: typeColors.rock }} onClick={() => sortByType("rock")}>Rock</button>
+              <button style={{ backgroundColor: typeColors.psychic }} onClick={() => sortByType("psychic")}>Physic</button>
             </div>
             <div className="grid-container">
-              {pokemons.map((pokemon, i) => {
+              {pokemons.length > 0 ? pokemons.map((pokemon, i) => {
                 return <Card key={i} pokemon={pokemon} />
-              })}
+              }) : <div><p>Not found</p></div>}
             </div>
           </>
         )}
