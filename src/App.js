@@ -13,7 +13,6 @@ function App() {
  
   const [pokemons, setPokemons] = useState([]);
   const def = (val) => {
-    console.log(val)
     setInitialUrl(`https://pokeapi.co/api/v2/pokemon?limit=${val}`)
   }
 
@@ -30,7 +29,6 @@ function App() {
     fetchData();
   }, [initialURL])
 
-  console.log(typeColors)
 
   const next = async () => {
     setLoading(true);
@@ -117,7 +115,7 @@ function App() {
             <div className="grid-container">
               {pokemons.length > 0 ? pokemons.map((pokemon, i) => {
                 return <Card key={i} pokemon={pokemon} />
-              }) : <div><p>Not found</p></div>}
+              }) : <div className="not-found"><p>There are no Pokémon of this type on this page</p></div>}
             </div>
           </>
         )}
