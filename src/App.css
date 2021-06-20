@@ -13,14 +13,18 @@
 
 .btn {
     display: flex;
-    justify-content: center;
-    margin: 40px 0;
+    justify-content: center; 
+    align-items: center; 
+    margin: 20px 0;
+    flex-wrap: wrap;
+
 }
 
 button {
     border-style: none;
     padding: 5px 10px;
     margin-right: 10px;
+    margin-top: 3px;
     border-radius: 5px;
     background: #717374;
     color: white;

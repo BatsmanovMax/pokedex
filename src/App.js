@@ -92,8 +92,8 @@ function App() {
               <button onClick={() => def(10)}>10 pokemons</button>
               <button onClick={() => def(20)}>20 pokemons</button>
               <button onClick={() => def(50)}>50 pokemons</button>
-              <button onClick={() => setPokemons(pokemonData)}>Clear</button>
             </div>
+            <div className="btn"> <button onClick={() => setPokemons(pokemonData)}>Clear</button></div>
             <div className="btn"> 
             <button style={{ backgroundColor: typeColors.water }} onClick={() => sortByType("water")}>Water</button>
             <button style={{ backgroundColor: typeColors.bug }} onClick={() => sortByType("bug")}>Bug</button>
