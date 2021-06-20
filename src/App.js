@@ -68,7 +68,6 @@ function App() {
       })
       return res
     }, [])
-    console.log(mp)
     setPokemons(mp)
   }
 
