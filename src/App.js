@@ -81,9 +81,9 @@ function App() {
       <div>
         {loading ? <h1 style={{ textAlign: 'center' }}>Loading</h1> : (
           <>
-            <input type="text" placeholder="search pokemon" className='input'
+            <div className="input-wrap"><div className="empty"></div><input type="text" placeholder="search pokemon" className='input'
             onChange={(event) => searchedPokemons(event.target.value)}
-            />
+            /></div>
             <div className="btn">
               <button onClick={prev}>Prev</button>
               <button onClick={next}>Next</button>
@@ -115,9 +115,9 @@ function App() {
             <button style={{ backgroundColor: typeColors.psychic }} onClick={() => sortByType("psychic")}>Physic</button>
             </div>
             <div className="grid-container">
-              {pokemons.map((pokemon, i) => {
+              {pokemons.length > 0 ? pokemons.map((pokemon, i) => {
                 return <Card key={i} pokemon={pokemon} />
-              })}
+              }) : <div><p>Not found</p></div>}
             </div>
           </>
         )}
