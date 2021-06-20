@@ -8,7 +8,7 @@
     display: grid;
     margin: 0 auto;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 3px;
+    grid-gap: 7px;
 }
 
 .btn {
